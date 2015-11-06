@@ -63,7 +63,7 @@
 &gt; $CDIR/joined.csv
 for f in "$*"
 do
-	cat $f &gt;&gt; $CDIRjoined.csv
+	cat $f &gt;&gt; $CDIR/joined.csv
 done</string>
 					<key>CheckedForUserDefaultShell</key>
 					<true/>
