@@ -59,12 +59,19 @@
 				<key>ActionParameters</key>
 				<dict>
 					<key>COMMAND_STRING</key>
-					<string>CDIR=${1%/*}
-&gt; $CDIR/joined.csv
-for f in "$*"
-do
-	cat $f &gt;&gt; $CDIR/joined.csv
-done</string>
+					<string>#!/bin/bash
+if test $# -gt 1; then
+  OUTPUTFILE=${1%/*}/Output_$(date +%Y%m%d%H%M).csv
+  for i in ${*}
+  do
+    if [ ! -e $OUTPUTFILE ]; then
+      cat ${i} &gt; $OUTPUTFILE
+    else
+      cat ${i} | awk 'NR&gt;=2 {print}' &gt;&gt; $OUTPUTFILE
+    fi
+    shift
+  done
+fi</string>
 					<key>CheckedForUserDefaultShell</key>
 					<true/>
 					<key>inputMethod</key>
@@ -177,7 +184,7 @@ done</string>
 				<key>isViewVisible</key>
 				<true/>
 				<key>location</key>
-				<string>449.000000:253.000000</string>
+				<string>449.000000:471.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Run Shell Script.action/Contents/Resources/Japanese.lproj/main.nib</string>
 			</dict>
