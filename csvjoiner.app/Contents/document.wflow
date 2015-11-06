@@ -59,10 +59,11 @@
 				<key>ActionParameters</key>
 				<dict>
 					<key>COMMAND_STRING</key>
-					<string>&gt; joined.csv
+					<string>CDIR=${1%/*}
+&gt; $CDIR/joined.csv
 for f in "$*"
 do
-	cat $f &gt;&gt; joined.csv
+	cat $f &gt;&gt; $CDIRjoined.csv
 done</string>
 					<key>CheckedForUserDefaultShell</key>
 					<true/>
